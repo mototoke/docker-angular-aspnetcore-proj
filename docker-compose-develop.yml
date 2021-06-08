@@ -1,0 +1,46 @@
+version: '3'
+services: 
+    server_app:
+        container_name: server_app
+        build:
+            context: ./server
+            dockerfile: Dockerfile.Dev
+        volumes:
+            - ./server/code/:/code/
+        tty: true
+        ports:
+            - 5000:5000
+            - 5001:5001
+    front_app:
+        container_name: front_app
+        build:
+            context: ./client
+            dockerfile: Dockerfile.Dev
+        tty: true
+        volumes:
+            - ./client/app/:/app/
+        ports:
+            - 4200:4200
+    # nginx:
+    #     container_name: nginx_proxy
+    #     build: ./nginx/Dockerfile.Dev
+    #     volumes:
+    #         - ./client/apps/build:/var/www
+    #         - ./nginx/datas/:/etc/nginx/conf.d/
+    #     restart: always 
+    #     depends_on: 
+    #         - front_app
+    # database:
+    #     image: postgres:11.12
+    #     restart: unless-stopped
+    #     ports:
+    #       - "5439:5432"
+    #     environment:
+    #       POSTGRES_USER: admin
+    #       POSTGRES_PASSWORD: admin
+    #       POSTGRES_DB: app_db
+    #     volumes:
+    #       - ./database:/var/lib/postgresql/data/
+
+
+    
