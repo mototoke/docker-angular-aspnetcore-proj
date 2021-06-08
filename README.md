@@ -8,6 +8,7 @@
 
 - angular_app run
 `ng serve --host 0.0.0.0`
+
 access url
 `http://{machine-IP}:4200`
 
@@ -15,5 +16,6 @@ access url
 ## server
 - server_app run
 `cd /code/server_app & dotnet run`
+
 access url
 `http://{machine-IP}:5001/WeatherForecast`
