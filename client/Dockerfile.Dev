@@ -1,3 +1,10 @@
 FROM node:12.18.3 as build-stage
 
 WORKDIR /app
+
+# # angular install
+# RUN npm install @angular-devkit/build-angular
+# RUN npm install -g @angular/cli
+
+
+EXPOSE 4200
