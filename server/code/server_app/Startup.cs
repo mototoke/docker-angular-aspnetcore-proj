@@ -16,6 +16,8 @@ namespace server_app
 {
     public class Startup
     {
+        private readonly string _myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,6 +34,23 @@ namespace server_app
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "server_app", Version = "v1" });
             });
+
+            // CORS settings
+            services.AddCors(options => {
+                 options.AddDefaultPolicy(
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                );
+
+                options.AddPolicy(_myAllowSpecificOrigins,
+                     builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                    );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,9 +63,14 @@ namespace server_app
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "server_app v1"));
             }
 
-            app.UseHttpsRedirection();
+            // comment out
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // CORS settings
+            app.UseCors(_myAllowSpecificOrigins);
+            app.UseCors();
 
             app.UseAuthorization();
 

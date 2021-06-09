@@ -18,4 +18,5 @@ access url
 `cd /code/server_app & dotnet run`
 
 access url
-`http://{machine-IP}:5001/WeatherForecast`
+`http://{machine-IP}:5000/WeatherForecast`
+`https://{machine-IP}:5001/WeatherForecast`
