@@ -1,6 +1,11 @@
 # docker-angular-aspnetcore-proj
 自分用のdocker環境でのangular+apsnetcore開発環境
 
+## develop
+`docker-compose -d up --build`
+
+## production
+T.B.D
 
 ## client
 - angular install
